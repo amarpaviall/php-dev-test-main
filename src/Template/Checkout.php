@@ -12,7 +12,7 @@ class Checkout extends Layout
     protected function renderPage(Context $context): string
     {
         $content = $this->header->render($context);
-
+        $image_path = '/images/product.jpg';
         return <<<HTML
                 <form method="post" accept-charset="utf-8" action="checkout" class="form" novalidate="novalidate">
                     <div class="frame">
@@ -28,7 +28,7 @@ class Checkout extends Layout
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Product Thumbnail</td>
+                                        <td><img src="$image_path" alt="Product Image"/></td>
                                         <td>Lorem Widget</td>
                                         <td>1</td>
                                     </tr>
