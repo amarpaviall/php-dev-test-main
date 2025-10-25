@@ -2,29 +2,36 @@
 
 namespace silverorange\DevTest;
 
+use PDO;
+use PDOException;
+
 class Database
 {
-    protected ?\PDO $pdo = null;
-    protected string $dsn;
+    protected ?PDO $pdo = null;
+    protected Config $config;
 
-    public function __construct(string $dsn)
+    public function __construct(Config $config)
     {
-        $this->dsn = $dsn;
+        $this->config = $config;
     }
 
-    public function setDSN(string $dsn): self
+    public function getConnection(): PDO
     {
-        if ($this->dsn !== $dsn) {
-            $this->dsn = $dsn;
-            $this->pdo = null;
-        }
-        return $this;
-    }
-
-    public function getConnection(): \PDO
-    {
-        if (!$this->pdo instanceof \PDO) {
-            $this->pdo = new \PDO($this->dsn);
+        if (!$this->pdo instanceof PDO) {
+            try {
+                $this->pdo = new PDO(
+                    $this->config->dsn,
+                    $this->config->user,
+                    $this->config->password,
+                    [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                        PDO::ATTR_EMULATE_PREPARES => false,
+                    ]
+                );
+            } catch (PDOException $e) {
+                throw new PDOException("Database connection failed: " . $e->getMessage());
+            }
         }
 
         return $this->pdo;
