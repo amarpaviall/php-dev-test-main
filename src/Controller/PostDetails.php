@@ -5,6 +5,7 @@ namespace silverorange\DevTest\Controller;
 use silverorange\DevTest\Context;
 use silverorange\DevTest\Template;
 use silverorange\DevTest\Model;
+use silverorange\DevTest\Model\Post;
 
 class PostDetails extends Controller
 {
@@ -52,6 +53,20 @@ class PostDetails extends Controller
     protected function loadData(): void
     {
         // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        //$this->post = null;
+
+        $id = $this->params[0];
+
+         // Fetch post with author using postId
+        $stmt = $this->db->prepare('
+            SELECT p.id, p.title, p.body, p.created_at, p.modified_at, a.full_name AS author
+            FROM posts p
+            LEFT JOIN authors a ON p.author = a.id
+            WHERE p.id = :id
+        ');
+
+        $stmt->execute(['id' => $id]);
+
+        $this->post = $stmt->fetchObject(Post::class) ?: null;
     }
 }
