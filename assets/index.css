@@ -111,3 +111,14 @@ main {
   border-bottom: 1px solid #eee;
   padding: 0.5rem;
 }
+
+.form-field input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.form-field label {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    display: inline-block;
+}
