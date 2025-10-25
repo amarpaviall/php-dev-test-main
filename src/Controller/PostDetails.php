@@ -27,6 +27,7 @@ class PostDetails extends Controller
         } else {
             $context->title = $this->post->title;
             $context->content = $this->params[0];
+            $context->post = $this->post;
         }
 
         return $context;
