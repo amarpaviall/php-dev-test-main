@@ -36,6 +36,8 @@ class Root extends Controller
            // echo $dataFolder;
         $files = glob($dataFolder . '/*.json');
         $imported = 0;
+        $skipped = 0;
+
         foreach ($files as $file) {
             $json = file_get_contents($file);
             $postData = json_decode($json, true);
@@ -48,7 +50,10 @@ class Root extends Controller
             // Skip if already exists
         $exists = $this->db->prepare("SELECT 1 FROM Posts WHERE id = :id");
         $exists->execute([':id' => $postData['id']]);
-        if ($exists->fetch()) continue;
+        if ($exists->fetch()) {
+            $skipped++;
+            continue;
+        }
 
             $stmt = $this->db->prepare("
                 INSERT INTO Posts (id, title, body, created_at, modified_at, author)
@@ -70,7 +75,7 @@ class Root extends Controller
                 echo "Failed to import {$postData['title']}: " . $e->getMessage() . "\n";
             }
         }
-        $message = "✅ Imported {$imported} posts.";
+        $message = "✅ Imported {$imported} posts. Skipped {$skipped} already existing.";
 
         return $message;
     }
