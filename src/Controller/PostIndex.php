@@ -29,6 +29,18 @@ class PostIndex extends Controller
     protected function loadData(): void
     {
         // TODO: Load posts from database here.
-        $this->posts = [];
+        //$this->posts = [];
+
+        // Fetch published posts in reverse chronological order
+        $stmt = $this->db->prepare('
+            SELECT p.id, p.title, p.body, p.created_at, p.modified_at, a.full_name AS author
+            FROM posts p
+            LEFT JOIN authors a ON p.author = a.id
+            ORDER BY p.created_at DESC
+        ');
+
+        $stmt->execute();
+
+        $this->posts = $stmt->fetchAll(\PDO::FETCH_CLASS, Post::class);
     }
 }
