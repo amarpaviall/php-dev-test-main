@@ -18,6 +18,7 @@ class PostIndex extends Controller
         $context = new Context();
         $context->title = 'Posts';
         $context->content = strval(count($this->posts));
+        $context->posts = $this->posts;
         return $context;
     }
 
