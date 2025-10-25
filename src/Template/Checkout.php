@@ -81,7 +81,7 @@ class Checkout extends Layout
                                     <input type="text" name="billing_address_last_name" id="billing_address_last_name" class="entry" value="Gauthier" size="17" maxlength="255" />
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="form-field form-field--required">
                                 <label class="form-field__label" for="billing_address_line1">Address Line 1: <span class="form-field__label-required"> (required)</span></label>
                                 <div class="form-field__contents">
                                     <input type="text" name="billing_address_line1" id="billing_address_line1" class="entry" value="" size="35" maxlength="255" />
