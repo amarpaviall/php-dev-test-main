@@ -34,6 +34,12 @@ class Checkout extends Layout
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="form-field">
+                                <label class="form-field__label">
+                                    <input type="checkbox" name="checkout_program" />
+                                    With our “Rise & Shine” beta program, you get early access to new features, but they may not always work perfectly. You can change your beta preference at any time after you join.
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="frame">
