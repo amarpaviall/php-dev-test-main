@@ -2,6 +2,8 @@
 
 namespace silverorange\DevTest;
 
+use silverorange\DevTest\Model\Post;
+
 class Context
 {
     // TODO: You can add more properties to this class to pass values to templates
@@ -12,5 +14,8 @@ class Context
 
     public ?string $message = null;
 
-     public array $posts = [];
+    public array $posts = [];
+
+    public ?Post $post = null;
+
 }
