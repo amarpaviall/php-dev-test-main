@@ -16,7 +16,7 @@ class PostDetails extends Layout
 
         return <<<HTML
             <!-- <p>SHOW CONTENT FOR {$context->content} HERE</p> -->
-            <h1>{$title}</h1>
+            <h1 class="page-title">{$title}</h1>
             <p><em>by {$author}</em></p>
             <div class="post-body">
                 {$body}
