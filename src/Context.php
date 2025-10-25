@@ -11,4 +11,6 @@ class Context
     public string $content = '';
 
     public ?string $message = null;
+
+     public array $posts = [];
 }
