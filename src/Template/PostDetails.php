@@ -12,7 +12,7 @@ class PostDetails extends Layout
         $author = htmlspecialchars($context->post->author);
 
         return <<<HTML
-            <p>SHOW CONTENT FOR {$context->content} HERE</p>
+            <!-- <p>SHOW CONTENT FOR {$context->content} HERE</p> -->
             <h1>{$title}</h1>
             <p><em>by {$author}</em></p>
             HTML;
