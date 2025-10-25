@@ -154,3 +154,14 @@ main {
   border: 1px solid #34a853;
   color: #155724;
 }
+
+ .page-title {
+        color: #ff6600;
+        font-family: Arial, sans-serif;
+        margin-bottom: 10px;
+    }
+    .post-count {
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+    }
